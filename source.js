@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-var colorArray=["#019875","#1E8BC3","#D91E18","#D35400","#8E44AD","#C0392B"];
+var colorArray=["#e6194B","#f58231","#3cb44b","#4363d8","#911eb4","#f032e6"];
 
 var currentQuestion=0;
 
@@ -45,13 +45,26 @@ var qbankArray=["a",
 "yellow",
 "you"];
 
-  beginActivity();
+//shuffleArray
+function shuffleArray(qbankArray) {
+    for (let i = qbankArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [qbankArray[i], qbankArray[j]] = [qbankArray[j], qbankArray[i]];
+    }
+}
+shuffleArray(qbankArray);
 
+///shuffleArray
+
+  beginActivity();
 
 function beginActivity(){
 
  var color1=colorArray[Math.floor(Math.random()*colorArray.length)];
- var qbank1=qbankArray[Math.floor(Math.random()*qbankArray.length)];
+//var qbank1=qbankArray[Math.floor(Math.random()*qbankArray.length)];
+
+var qbank1 = qbankArray[currentQuestion];
+
  $("#cardArea").empty();
 
  $("#cardArea").append('<div id="card1" class="card">' + qbank1+ '</div>');
@@ -69,6 +82,7 @@ function beginActivity(){
   else{displayFinalMessage();}
  });//click function
 }//beginactivity
+
 
 function togglePosition(){
  if($("#card1").position().top==-200){$("#card1").css("top","200px");};
